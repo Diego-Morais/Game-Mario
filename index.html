@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+
+
+<html>
+    
+<head>
+  
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    
+    </head>
+
+<body>
+
+    <div class="game-board">
+        
+    <div class="play">
+    <img src="imagens/clouds.png" class="clouds">
+    <img src="imagens/mario.gif" class="mario">
+    <img src="imagens/pipe.png" class="pipo">
+        
+    <h2 class="metros">Metros: 0m</h2>
+    
+        
+    <div class="game-over">
+        <h3 class="distancia">Distacia: 0</h3>
+        <h2>Você Perdeu!!!</h2>
+        <img src="imagens/reniciar.png" onclick="reniciar()">
+        
+        </div>
+        
+        </div>
+        
+        <div class="start">
+            
+        <img src="imagens/clouds.png" class="clouds2">
+        
+
+        <img src="imagens/mario2.png" class="mario2">
+        <h2 class="jogar" onclick="jogar()">jogar</h2>
+        
+        
+        </div>
+        
+    </div>
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <script>
+
+const mario = document.querySelector('.mario');
+const pipo = document.querySelector('.pipo');
+const clouds = document.querySelector('.clouds');
+const metros = document.querySelector('.metros');
+const gameover = document.querySelector('.game-over');
+const distancia = document.querySelector('.distancia');
+        
+const iniciar = document.querySelector('.play');
+const start = document.querySelector('.start');       
+        
+        
+function jogar(){
+
+
+start.style.display = 'none';
+iniciar.style.display = 'block';
+    
+}
+        
+        
+        
+        
+const jump = () =>{
+ mario.classList.add('jump');
+    
+ setTimeout(() =>{
+           
+ mario.classList.remove('jump');
+           }, 500);
+    
+}
+
+
+
+
+
+
+const loop = setInterval(()=>{
+
+const pipoposition = pipo.offsetLeft;
+const nuvemposition = clouds.offsetLeft;
+const marioposition = +window.getComputedStyle(mario).bottom.replace("px", '');
+    
+    if(pipoposition <= 90 && pipoposition > 0 && marioposition < 80){
+       
+        
+         
+        
+        pipo.style.animation = 'none';
+        clouds.style.animation = 'none'
+        clouds.style.left = nuvemposition+'px';
+        pipo.style.left = pipoposition+'px';
+        
+        mario.src = 'imagens/game-over.png';
+        mario.style.width='50px';
+        mario.style.margin = '50px';
+        
+        metros.style.display = 'none';
+        gameover.style.visibility = 'visible';
+        
+    
+        
+      
+        
+        
+           
+  
+      
+        
+    }
+    
+    
+
+}, 10);
+        
+  let sg = 0;
+  
+
+const tempo = setInterval(()=>{
+
+const pipoposition = pipo.offsetLeft;
+const nuvemposition = clouds.offsetLeft;
+const marioposition = +window.getComputedStyle(mario).bottom.replace("px", '');
+    
+   sg++;
+    
+   metros.innerHTML = "Metros: "+sg+"m";
+   distancia.innerHTML = "distancia: "+sg+"m";
+     
+  if(pipoposition <= 90 && pipoposition > 0 && marioposition < 80){
+     
+     clearInterval(tempo);
+     
+    }
+
+}, 750)
+
+
+
+function reniciar(){
+    
+window.location.href = 'index.html';
+
+}
+    
+       
+        
+ document.addEventListener('keydown', jump);
+ 
+      s
+        
+     
+       
+      
+    
+    </script>
+
+    </body>
+
+</html>
